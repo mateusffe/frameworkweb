@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados de Pesquisa</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+        nav {
+            background-color: #fff;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            background: linear-gradient(to right, #ff6600, #ff0066, #0066ff);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        .search-bar {
+            display: flex;
+            align-items: center;
+            background-color: #f1f1f1;
+            border-radius: 20px;
+            padding: 5px 15px;
+            max-width: 400px;
+            width: 100%;
+        }
+        .search-bar input {
+            border: none;
+            outline: none;
+            background: none;
+            font-size: 16px;
+            flex: 1;
+        }
+        .search-bar button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            color: #007bff;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+   
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo"><a href='{% url "index" %}'>Search</a></div>
+         <form action="{% url 'pesquisa' %}" method="get">
+            <div class="search-bar">
+                <input type="text" name="q" placeholder="Search" required>
+                <button>&#128269;</button>
+            </div>
+        </form>
+    </nav>
+    <div class="container">
+        <img src="{{pessoa.foto.url}}">
+        <h1 style="text-align:center">{{pessoa.nome}}</h1>
+        <i style="text-align:center">{{pessoa.profissao}}</i>
+        <i style="text-align:center">{{pessoa.empresa_ligada}}</i>
+        <p>{{pessoa.descricao}}</p>
+
+    </div>
+    <h2>Notícias sobre {{ pessoa.nome }}</h2>
+    <div>
+        {% if noticias %}
+            <ul>
+                {% for noticia in noticias %}
+                    <li>
+                        <a href="{{ noticia.link }}" target="_blank">{{ noticia.titulo }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Não foram encontradas notícias sobre {{ pessoa.nome }}.</p>
+        {% endif %}
+    </div>
+
+</body>
+</html>

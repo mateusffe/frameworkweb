@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f9f9f9;
+        }
+        .container {
+            text-align: center;
+        }
+        .title {
+            font-size: 48px;
+            font-weight: bold;
+            background: linear-gradient(90deg, orange, pink, #d810d8);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        .search-bar {
+            margin-top: 20px;
+            position: relative;
+            width: 80%;
+            max-width: 600px;
+        }
+        .search-bar input {
+            width: 100%;
+            padding: 15px 20px;
+            border-radius: 50px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            outline: none;
+        }
+        button {
+            margin-top:20px;
+            background: #f8bcf8;
+            border: 1px solid #000;
+            border-radius:8px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+        button:hover{
+            background: #ee95ee;
+
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title">Search</div>
+        <form action="{% url 'pesquisa' %}" method="get">
+            <div class="search-bar">
+                <input type="text" name="q" placeholder="Search" required>
+            </div>
+            <button type="submit">Pesquisar</button>
+        </form>
+
+    </div>
+</body>
+</html>
